@@ -1,0 +1,89 @@
+.previewcontainer {
+    width: 90%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    display: flex;
+    overflow: hidden;
+  
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    vertical-align: middle;
+    
+}
+
+.image-card{
+    width: calc(50% - 60px);
+    background-color: darkolivegreen;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image{
+    width: calc(100% - 10px);
+    margin: 0 auto;
+    display: flex;
+}
+
+.description{
+    width: calc(100% - 60px);
+    height: 40%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+   
+}
+
+.plantingtime{
+    display: table;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.temperaturepreview{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+       margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+}
+
+.climate{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 16px;
+}
