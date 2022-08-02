@@ -87,3 +87,25 @@
     align-items: center;
     margin-top: 16px;
 }
+
+.MuiCard-root{
+    z-index: 1000;
+}
+
+.MuiCardHeader-title{
+    font-size: 26px;
+}
+
+.MuiTypography-body1{
+    font-size: 20px;
+}
+
+.MuiButton-text{
+    font: 1.5em sans-serif;
+}
+
+.card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

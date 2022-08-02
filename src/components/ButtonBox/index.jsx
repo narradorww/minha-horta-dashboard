@@ -9,6 +9,7 @@ const ButtonBox = styled(Button)({
         color: 'white',
     backgroundcolor: 'white',
     border: '6px solid white',
+    textDecoration: 'none',
     '&:hover' :{
         backgroundcolor: 'white',
         color: 'white',

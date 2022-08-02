@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const baseUrl = "https://minha-horta-api.herokuapp.com/vegetais"
+export const baseUrl = "https://minha-horta-api.herokuapp.com/vegetais"
 
 
 export function postCard(data) {
@@ -15,6 +15,14 @@ export function postCard(data) {
 
     return {data};
 };
+
+export function getCard() {
+    axios.get(baseUrl).then(res=>{
+        return res.data
+
+
+    })
+}
   
 
 

@@ -1,4 +1,6 @@
-import React, { useState }from 'react'
+import React, { useState, useEffect }from 'react'
+import axios from "axios";
+import { baseUrl } from '../hooks/api';
 
 export const VeggieContext = React.createContext({})
 
@@ -20,11 +22,15 @@ export const VeggieProvider = (props) => {
   seedsperWeight: 8,
   plantsperHectare: 1100,
 })
+const [vegetais, setVegetais] = useState([])
+
+
 
 console.log("veggie", veggie)
+console.log("vegetais no contexto", vegetais)
 
     return (
-        <VeggieContext.Provider value={{veggie, setVeggie}}>
+        <VeggieContext.Provider value={{veggie, setVeggie, vegetais, setVegetais}}>
             {props.children}
         </VeggieContext.Provider>
 

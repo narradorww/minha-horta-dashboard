@@ -1,5 +1,5 @@
 body{
-    background-color: aqua
+    background-color: transparent;
 }
 
 
@@ -23,19 +23,22 @@ body{
 
 .cadastro{
     width: 40%;
-    height: 80%;
+    height: calc(80% + 8vmin);
     margin: 0 auto;
-    background-color: #fff;
+    background-color: aliceblue;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 .preview{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
     width: 48%;
-    height: 80%;
+    height: calc(80% + 8vmin);
     margin: 0 auto;
-    background-color: #fff;
+    background-color: transparent;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);

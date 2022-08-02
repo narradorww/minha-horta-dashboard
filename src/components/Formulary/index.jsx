@@ -1,158 +1,214 @@
-import React, {useState} from "react";
-import "./style.css";
-import { Formik, Field, Form } from "formik";
+import React, { useState } from "react";
+import { useFormik } from "formik";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import { VeggieContext } from "../../providers/veggie";
+import './style.css';
 
-const initial = {title: "",
-description: "",
-imageUrl: "",
-plantingTimeSSE: "",
-plantingTimeONNE: "",
-minTemperature: "",
-maxTemperature: "",
-ocupationX: "",
-ocupationY: "",
-ocupationZ: "",
-timeHarvest: "",
-seedsperWeight: "",
-plantsperHectare: ""}
+const initial = {
+  title: "",
+  description: "",
+  imageUrl: "",
+  plantingTimeSSE: "",
+  plantingTimeONNE: "",
+  minTemperature: "",
+  maxTemperature: "",
+  ocupationX: "",
+  ocupationY: "",
+  ocupationZ: "",
+  timeHarvest: "",
+  seedsperWeight: "",
+  plantsperHectare: "",
+};
 
-export default function Formulary() {
-const {setVeggie} = React.useContext(VeggieContext);
-const [initialValues, setInitialValues] = useState(initial);
+const Formulary = () => {
+  const { setVeggie } = React.useContext(VeggieContext);
+  // eslint-disable-next-line no-unused-vars
+  const [initialValues, setInitialValues] = useState(initial);
 
-  
+  const formik = useFormik({
+    initialValues: initial,
+    onSubmit: (values) => {
+      setVeggie(values);
+      setInitialValues(initial);
+    },
+  });
+
   return (
-    <div className="form">
-      <h3>Cadastre sua semente</h3>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={async (values) => {
-          await new Promise((r) => setTimeout(r, 0));
-          setVeggie(values);
-          setInitialValues(initial);
-        }}
-      >
-        <Form>
-          <div className="core">
-            <label htmlFor="title">Nome da Planta</label>
-            <Field className="field" name="title" type="text" placeholder="Nome da Planta" />
-          </div>
-          <div className="core">
-            <label htmlFor="description">Descrição</label>
-            <Field className="field" name="description" type="text" placeholder="Descrição" />
-          </div>
-          <div className="core">
-            <label htmlFor="imageUrl">URL da Imagem</label>
-            <Field className="field" name="imageUrl" type="text" placeholder="URL da Imagem" />
-          </div>
-          <div className="planting-time">
-            <div className="planting-time-sse core">
-              <label htmlFor="plantingTimeSSE">
-                Época de Plantio Sul-Sudeste
-              </label>
-              <Field
-              className="field"
-                name="plantingTimeSSE"
-                type="text"
-                placeholder="Mês Inicial, Mês Final"
-              />
-            </div>
-            <div className="planting-time-onne core">
-              <label htmlFor="plantingTimeONNE">
-                Época de Plantio Centro-Oeste/Norte/Nordeste
-              </label>
-              <Field
-              className="field"
-                name="plantingTimeONNE"
-                type="text"
-                placeholder="Mês Inicial, Mês Final"
-              />
-            </div>
-          </div>
-          <div className="temperature">
-            <div className="min-temperature core">
-            <label htmlFor="minTemperature">Temperatura Mínima</label>
-            <Field
-            className="field"
-              name="minTemperature"
-              type="text"
-              placeholder="Temperatura Mínima"
-            />
-            </div>
-            <div className="max-temperature core">
+    <div>
+      <h3>Cadastro de Sementes</h3>
+      <form onSubmit={formik.handleSubmit}>
+        <div className="text-field">
+          <TextField
+            fullWidth
+            variant="filled"
+            margin="normal"
+            label="Nome da Planta"
+            name="title"
+            onChange={formik.handleChange}
+            value={formik.values.title}
+          />
+        </div>
+        <div className="text-field">
+          <TextField
+            fullWidth
+            variant="filled"
+            margin="normal"
+            label="Descrição"
+            name="description"
+            multiline
+            maxRows={4}
+            onChange={formik.handleChange}
+            value={formik.values.description}
+          />
+        </div>
+        <div className="text-field">
+          <TextField
+            fullWidth
+            variant="filled"
+            margin="normal"
+            label="URL da Imagem"
+            name="imageUrl"
+            onChange={formik.handleChange}
+            value={formik.values.imageUrl}
+          />
+        </div>
 
-            <label htmlFor="maxTemperature">Temperatura Máxima</label>
-            <Field
-            className="field"
-              name="maxTemperature"
-              type="text"
-              placeholder="Temperatura Máxima"
+<div className="time-climate">
+<div className="time-planting">
+        <h4>Época de Plantio</h4>
+        
+          <div className="text-field">
+            <TextField
+            variant="filled"
+              margin="normal"
+              label="Época de Plantio (SSE)"
+              name="plantingTimeSSE"
+              onChange={formik.handleChange}
+              value={formik.values.plantingTimeSSE}
             />
-            </div>
           </div>
+          <div className="text-field">
+            <TextField
+            variant="filled"
+              margin="normal"
+              label="Época de Plantio (ONNE)"
+              name="plantingTimeONNE"
+              onChange={formik.handleChange}
+              value={formik.values.plantingTimeONNE}
+            />
+          </div>
+        </div>
+        <div className="temperature">
+        <h4>Temperatura de Plantio</h4>
+        <div className="text-field">
+          <TextField
+          variant="filled"
+            margin="normal"
+            className="text-field"
+            label="Temperatura Mínima"
+            name="minTemperature"
+            onChange={formik.handleChange}
+            value={formik.values.minTemperature}
+          />
+        </div>
+              
+        <div className="text-field">
+          <TextField
+          variant="filled"
+            margin="normal"
+            label="Temperatura Máxima"
+            name="maxTemperature"
+            onChange={formik.handleChange}
+            value={formik.values.maxTemperature}
+          />
+        </div>
+        </div> 
+        </div>
+        
+<div className="ocupation">
+<h4> Ocupação Espacial (cm) </h4>
+  <div className="ocupation-container">
 
-          <div className="harvest">
-            <div className="core">
-              <label htmlFor="timeHarvest">Tempo de Colheita</label>
-              <Field
-              className="field"
-                name="timeHarvest"
-                type="text"
-                placeholder="Tempo de Colheita"
-              />
-            </div>
-            <div className="core">
-              <label htmlFor="seedsperWeight">Sementes por Peso</label>
-              <Field
-              className="field"
-                name="seedsperWeight"
-                type="text"
-                placeholder="Sementes por Peso"
-              />
-            </div>
-            <div className="core">
-              <label htmlFor="plantsperHectare">Plantas por Hectare</label>
-              <Field
-              className="field"
-                name="plantsperHectare"
-                type="text"
-                placeholder="Plantas por Hectare"
-              />
-            </div>
-            <div className="ocupation">
-            <div >
-              <label htmlFor="ocupationX">Espaçamento Horizontal</label>
-              <Field
-              className="field"
-                name="ocupationX"
-                type="text"
-                placeholder="(cm)"
-              />
-            </div>
-            <div>
-              <label htmlFor="ocupationY">Espaçamento Vertical</label>
-              <Field
-              className="field"
-                name="ocupationY"
-                type="text"
-                placeholder="(cm)"
-              />
-            </div>
-            <div>
-              <label htmlFor="ocupationZ">Estrato/Altura</label>
-              <Field
-              className="field"
-                name="ocupationZ"
-                type="text"
-                placeholder="(cm)"
-              />
-            </div>
+        <div className="text-field">
+          <TextField
+          variant="filled"
+            margin="normal"
+            label="Largura"
+            name="ocupationX"
+            onChange={formik.handleChange}
+            value={formik.values.ocupationX}
+          />
+        </div>
+        <div className="text-field">
+          <TextField
+          variant="filled"
+            margin="normal"
+            label="Comprimento"
+            name="ocupationY"
+            onChange={formik.handleChange}
+            value={formik.values.ocupationY}
+          />
+        </div>
+        <div className="text-field">
+          <TextField
+          variant="filled"
+            margin="normal"
+            className="text-field"
+            label="Altura/Estrato"
+            name="ocupationZ"
+            onChange={formik.handleChange}
+            value={formik.values.ocupationZ}
+          />
+        </div>
+        </div>
+</div>
+
+<div className="ocupation">
+          <h4>Colheita</h4>
+<div className="ocupation-container">
+          <div className="text-field">
+            <TextField
+            variant="filled"
+              margin="normal"
+              label="Tempo de Colheita"
+              name="timeHarvest"
+              className="text-field"
+              onChange={formik.handleChange}
+              value={formik.values.timeHarvest}
+            />
+          </div>
+          <div className="text-field">
+            <TextField
+            variant="filled"
+              margin="normal"
+              label="Sementes por grama"
+              name="seedsperWeight"
+              onChange={formik.handleChange}
+              value={formik.values.seedsperWeight}
+            />
+          </div>
+          <div className="text-field">
+            <TextField
+            variant="filled"
+              margin="normal"
+              label="Quantidade de Plantas por Hectare"
+              name="plantsperHectare"
+              onChange={formik.handleChange}
+              value={formik.values.plantsperHectare}
+            />
           </div>
           </div>
-          <button type="submit">Visualizar Prévia</button>
-        </Form>
-      </Formik>
+          </div>
+        <div className="button">
+          <Button  type="submit" variant="outlined" color="primary" size="large" >
+            Visualizar Prévia
+          </Button>
+        </div>
+        
+      </form>
     </div>
   );
-}
+};
+
+export default Formulary;

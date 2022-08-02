@@ -1,6 +1,7 @@
 import React from "react";
 import ButtonBox from "../ButtonBox";
 import Avatar from "../../assets/images/avatar.png";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 const Container = () => {
@@ -8,7 +9,7 @@ const Container = () => {
     <main className="container">
        
       <div className="buttonGroup">
-        <ButtonBox> Cadastro </ButtonBox>
+        <ButtonBox><Link to="/cadastro"> Cadastro</Link></ButtonBox>
         <ButtonBox> Catálogo </ButtonBox>
       </div>
       <aside>

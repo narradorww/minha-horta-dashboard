@@ -9,9 +9,7 @@ const Home = () => {
         <>
 <Header>
 </Header>
-<Container>
-    Container
-</Container>
+<Container/>
 <Footer />
 
 </>
