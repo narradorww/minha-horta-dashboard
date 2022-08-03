@@ -1,6 +1,5 @@
-import React, { useState, useEffect }from 'react'
-import axios from "axios";
-import { baseUrl } from '../hooks/api';
+import React, { useState }from 'react'
+
 
 export const VeggieContext = React.createContext({})
 

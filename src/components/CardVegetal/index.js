@@ -44,7 +44,7 @@ export default function CardVegetal() {
       console.log(error)
     }
     )
-  }, [setVegetais])
+  }, [setVegetais, vegetais])
 
 
   const handleExpandClick = () => {
@@ -54,11 +54,11 @@ export default function CardVegetal() {
   return (
     <>
     {vegetais.map((item) => 
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 500 }}>
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              R
+              {item.title[0]}
             </Avatar>
           }
           action={
@@ -76,7 +76,7 @@ export default function CardVegetal() {
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            {item.descripition}
+            {item.description}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
