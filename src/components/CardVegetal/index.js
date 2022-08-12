@@ -14,9 +14,12 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Carousel from 'react-elastic-carousel';
 import { VeggieContext } from "../../providers/veggie";
 import { baseUrl } from "../../hooks/api";
 import axios from "axios";
+import style from "./CardVegetal.module.css";
+
 
 
 const ExpandMore = styled((props) => {
@@ -52,9 +55,10 @@ export default function CardVegetal() {
   };
 
   return (
-    <>
+   
+    <Carousel itemsToShow={3}>
     {vegetais.map((item) => 
-      <Card sx={{ maxWidth: 500 }}>
+      <Card sx={{ maxWidth: 500, height: 500, marginTop: 8, marginBottom: 16 }}>
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -69,8 +73,9 @@ export default function CardVegetal() {
           title={item.title}
         />
         <CardMedia
+          sx={{ height: 200  }}
           component="img"
-          height="194"
+          height="100"
           image={item.imageUrl}
           alt={item.title}
         />
@@ -100,6 +105,7 @@ export default function CardVegetal() {
         </Collapse>
       </Card>
 )}
-    </>
+    </Carousel>
+  
   );
 }

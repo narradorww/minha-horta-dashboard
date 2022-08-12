@@ -1,43 +1,40 @@
-import React , {useEffect} from "react";
-import {postCard} from "../../hooks/api";
+import React, { useEffect } from "react";
+import { postCard } from "../../hooks/api";
 import { VeggieContext } from "../../providers/veggie";
 //material -ui
-import { styled } from '@mui/material/styles'
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import {  Button } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Collapse from "@mui/material/Collapse";
+import Avatar from "@mui/material/Avatar";
+import IconButton from "@mui/material/IconButton";
+import { red } from "@mui/material/colors";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { Button } from "@mui/material";
+
 //style
-import './style.css'
+import style from "./Preview.module.css";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
 })(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
+  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+  marginLeft: "auto",
+  transition: theme.transitions.create("transform", {
     duration: theme.transitions.duration.shortest,
   }),
 }));
 
-
-
-
 export default function Preview() {
-  const {veggie} = React.useContext(VeggieContext);
-  const [ item, setItem ] = React.useState(veggie);
-  const [expanded, setExpanded ] = React.useState (false)
-  
+  const { veggie } = React.useContext(VeggieContext);
+  const [item, setItem] = React.useState(veggie);
+  const [expanded, setExpanded] = React.useState(false);
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -47,14 +44,14 @@ export default function Preview() {
   }, [item, veggie]);
 
   const handleButton = async () => {
-    postCard( veggie );
-  }
+    postCard(veggie);
+  };
 
   return (
-    <Card sx={{maxWidth: '60%' }}>
+    <Card sx={{ maxWidth: "70%", maxHeight: 1200, zIndex: 99 }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500]}} arial-label="vegetal">
+          <Avatar sx={{ bgcolor: red[500] }} arial-label="vegetal">
             {item.title[0]}
           </Avatar>
         }
@@ -65,25 +62,23 @@ export default function Preview() {
         }
         title={item.title}
         variant="h4"
-        />
+      />
 
-<CardMedia
+      <CardMedia
         component="img"
-        sx={{maxHeight: 200, minWidth: 720 }}
+        sx={{ maxHeight: 250, minWidth: 720 }}
         image={item.imageUrl}
         alt={item.title}
-      /> 
-  <CardContent>
-        <Typography variant="body1" color="text.secondary">
-          {item.description}
-        </Typography>
-      </CardContent> 
-  
+      />
+      <CardContent>
+        <div className={style.textCard}>{item.description}</div>
+      </CardContent>
+
       <CardActions disableSpacing>
-        <Button onClick={handleButton} variante="outlined"  >
-        Confirmar Cadastro
+        <Button onClick={handleButton} variante="outlined">
+          Confirmar Cadastro
         </Button>
-        
+
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
@@ -92,136 +87,78 @@ export default function Preview() {
         >
           <ExpandMoreIcon />
         </ExpandMore>
-
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-      
-      <CardContent>
-      <div className="card">
-        <Card sx={{maxWidth: "48%"}}>
-          <CardContent>
-            <Typography variant="h4" sx={{marginBottom: 2}} color="text.secondary" gutterBotton>
-              Época de Plantio
-            </Typography>
-            <Typography variant="h5" component="div">
-            Sul/Sudeste
-            </Typography>
-            <Typography sx={{ mb: 1.5, fontSize:22 }} color="text.secondary">
-          {item.plantingTimeSSE}
-        </Typography>
-          </CardContent>
-          <CardContent>
-           <Typography variant="h5" component="div">
-            Centro-Oeste/Norte/Nordeste
-            </Typography>
-            <Typography sx={{ mb: 1.5, fontSize:22 }} color="text.secondary">
-          {item.plantingTimeONNE}
-        </Typography>
-          </CardContent>
-        </Card>
+        <CardContent sx={{ height: 300, padding: 6, marginBottom: 2 }}>
+          <div className={style.season}>
+            <h4> Época de Plantio </h4>
+            <div className={style.seasonText}>
+              <div className={style.seasonValue}>
+                <h5>Sul/Sudeste</h5>
+                {item.plantingTimeSSE}
+              </div>
+              <div className={style.seasonValue}>
+                <h5>Centro-Oeste/Norte Nordeste</h5>
+                {item.plantingTimeONNE}
+              </div>
+            </div>
+          </div>
 
-        <Card sx={{maxWidth: "48%", mt: 1.5}}>
-          <CardContent>
-            <Typography variant="h4" sx={{marginBottom: 2}} color="text.secondary" gutterBotton>
-              Temperatura
-            </Typography>
-            <Typography variant="h5" component="div">
-            Mínima
-            </Typography>
-            <Typography sx={{ mb: 1.5, fontSize:22 }} color="text.secondary">
-          {item.minTemperature}
-        </Typography>
-          </CardContent>
-          <CardContent>
-           
-            <Typography variant="h5" component="div">
-            Máxima
-            </Typography>
-            <Typography sx={{ mb: 1.5, fontSize:22 }} color="text.secondary">
-          {item.maxTemperature}
-        </Typography>
-          </CardContent>
-        </Card>
-</div>
-<div className="card">
-<Card sx={{maxWidth: "48%", mt: 1.5}}>
-          <CardContent>
-            <Typography variant="h4" sx={{marginBottom: 2}} color="text.secondary" gutterBotton>
-              Produção
-            </Typography>
-            <Typography variant="h5" component="div">
-           Tempo de Colheita
-            </Typography>
-            <Typography sx={{ mb: 0.5, fontSize:22 }} color="text.secondary">
-          {item.timeHarvest}
-        </Typography>
-          </CardContent>
-          <CardContent>
-           
-            <Typography variant="h5" component="div">
-            Sementes por Peso (sementes/g)
-            </Typography>
-            <Typography sx={{ mb: 0.5, fontSize:22 }} color="text.secondary">
-          {item.seedsperWeight}
-        </Typography>
-        <Typography variant="h5" component="div">
-            Espécime por hectare
-            </Typography>
-            <Typography sx={{ mb: 0.5, fontSize:22 }} color="text.secondary">
-          {item.plantsperHectare}
-        </Typography>
+          <div className={style.season}>
+            <h4> Temperatura de Plantio</h4>
+            <div className={style.seasonText}>
+              <div className={style.seasonValue}>
+                <h5>Mínima °C</h5>
+                {item.minTemperature}
+              </div>
+              <div className={style.seasonValue}>
+                <h5>Máxima °C</h5>
+                {item.maxTemperature}
+              </div>
+            </div>
+          </div>
 
-          </CardContent>
-        </Card>
-        <Card sx={{maxWidth: "48%", mt: 1.5}}>
-          <CardContent>
-            <Typography variant="h4" sx={{marginBottom: 2}} color="text.secondary" gutterBotton>
-              Ocupação
-            </Typography>
-            <Typography variant="h5" component="div">
-           Horizontal (X)
-            </Typography>
-            <Typography sx={{ mb: 0.5, fontSize:22 }} color="text.secondary">
-          {item.ocupationX}
-        </Typography>
-          </CardContent>
-          <CardContent>
-           
-            <Typography variant="h5" component="div">
-            Vertical(Y)
-            </Typography>
-            <Typography sx={{ mb: 0.5, fontSize:22 }} color="text.secondary">
-          {item.ocupationY}
-        </Typography>
-        <Typography variant="h5" component="div">
-            Altura/Estrato(Z)
-            </Typography>
-            <Typography sx={{ mb: 0.5, fontSize:22 }} color="text.secondary">
-          {item.ocupationZ}
-        </Typography>
+          <div className={style.season}>
+            <h4> Ocupação Espacial</h4>
+            <div className={style.seasonText}>
+              <div className={style.seasonValue}>
+                <h5>Largura cm</h5>
+                {item.ocupationX}
+              </div>
+              <div className={style.seasonValue}>
+                <h5>Comprimento</h5>
+                {item.ocupationY}
+              </div>
+              <div className={style.seasonValue}>
+                <h5>Comprimento</h5>
+                {item.ocupationZ}
+              </div>
+            </div>
+          </div>
 
-          </CardContent>
-        </Card>
+          <div className={style.season}>
+            <h4> Colheita</h4>
+            <div className={style.seasonText}>
+              <div className={style.seasonValue}>
+                <h5>Tempo (dias)</h5>
+                {item.timeHarvest}
+              </div>
+              <div className={style.seasonValue}>
+                <h5>Sementes por grama</h5>
+                {item.seedsperWeight}
+              </div>
+              <div className={style.seasonValue}>
+                <h5>Unidades/ha</h5>
+                {item.plantsperHectare}
+              </div>
+            </div>
+          </div>
+
+          
 
 
-</div> 
-
-
-
-      
-   
-      </CardContent>
+        </CardContent>
       </Collapse>
-
-
     </Card>
-  )
-      }
-  
-
-  
-
-   
-
-    
-
+  );
+}

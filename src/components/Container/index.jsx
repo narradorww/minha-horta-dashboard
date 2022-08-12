@@ -1,16 +1,19 @@
 import React from "react";
-import ButtonBox from "../ButtonBox";
 import Avatar from "../../assets/images/avatar.png";
 import { Link } from "react-router-dom";
-import "./style.css";
+import styles from "./container.module.css";
 
 const Container = () => {
   return (
-    <main className="container">
+    <main className={styles.container}>
        
-      <div className="buttonGroup">
-        <ButtonBox><Link to="/cadastro"> Cadastro</Link></ButtonBox>
-        <ButtonBox> Catálogo </ButtonBox>
+      <div className={styles.buttonGroup}>
+        <div className={styles.button}>
+        <Link to="/cadastro"> Cadastro</Link>
+        </div>
+        <div className={styles.button}>
+        <Link to="/catalogo"> Catálogo </Link>
+        </div>
       </div>
       <aside>
             <img src={Avatar} alt="avatar" />

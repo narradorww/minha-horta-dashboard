@@ -1,6 +1,7 @@
 import Home from "./pages/Home";
 import Cadastro from "./pages/Cadastro";
-import { Routes, Route, Link } from "react-router-dom";
+import Canteiro from "./pages/Canteiro";
+import { Routes, Route} from "react-router-dom";
 import Catalogo from "./pages/Catalogo";
 
 
@@ -10,6 +11,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path='/cadastro' element={<Cadastro />} />
       <Route path='/catalogo' element={<Catalogo/>} />
+      <Route path='/canteiro' element={<Canteiro/>} />
     </Routes>
     
   );

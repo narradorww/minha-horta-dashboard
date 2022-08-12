@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { VeggieContext } from "../../providers/veggie";
-import './style.css';
+import style from "./Formulary.module.css";
 
 const initial = {
   title: "",
@@ -38,7 +38,7 @@ const Formulary = () => {
     <div>
       <h3>Cadastro de Sementes</h3>
       <form onSubmit={formik.handleSubmit}>
-        <div className="text-field">
+        <div className={style.textField}>
           <TextField
             fullWidth
             variant="filled"
@@ -49,7 +49,7 @@ const Formulary = () => {
             value={formik.values.title}
           />
         </div>
-        <div className="text-field">
+        <div className={style.textField}>
           <TextField
             fullWidth
             variant="filled"
@@ -62,7 +62,7 @@ const Formulary = () => {
             value={formik.values.description}
           />
         </div>
-        <div className="text-field">
+        <div className={style.textField}>
           <TextField
             fullWidth
             variant="filled"
@@ -74,11 +74,11 @@ const Formulary = () => {
           />
         </div>
 
-<div className="time-climate">
-<div className="time-planting">
+<div className={style.timeClimate}>
+<div className={style.timePlanting}>
         <h4>Época de Plantio</h4>
         
-          <div className="text-field">
+          <div className={style.textField}>
             <TextField
             variant="filled"
               margin="normal"
@@ -88,7 +88,7 @@ const Formulary = () => {
               value={formik.values.plantingTimeSSE}
             />
           </div>
-          <div className="text-field">
+          <div className={style.textField}>
             <TextField
             variant="filled"
               margin="normal"
@@ -99,13 +99,13 @@ const Formulary = () => {
             />
           </div>
         </div>
-        <div className="temperature">
+        <div className={style.timePlanting}>
         <h4>Temperatura de Plantio</h4>
-        <div className="text-field">
+        <div className={style.textField}>
           <TextField
           variant="filled"
             margin="normal"
-            className="text-field"
+            className={style.textField}
             label="Temperatura Mínima"
             name="minTemperature"
             onChange={formik.handleChange}
@@ -113,7 +113,7 @@ const Formulary = () => {
           />
         </div>
               
-        <div className="text-field">
+        <div className={style.textField}>
           <TextField
           variant="filled"
             margin="normal"
@@ -126,11 +126,11 @@ const Formulary = () => {
         </div> 
         </div>
         
-<div className="ocupation">
+<div className={style.ocupation}>
 <h4> Ocupação Espacial (cm) </h4>
-  <div className="ocupation-container">
+  <div className={style.ocupationContainer}>
 
-        <div className="text-field">
+        <div className={style.textField}>
           <TextField
           variant="filled"
             margin="normal"
@@ -140,7 +140,7 @@ const Formulary = () => {
             value={formik.values.ocupationX}
           />
         </div>
-        <div className="text-field">
+        <div className={style.textField}>
           <TextField
           variant="filled"
             margin="normal"
@@ -150,11 +150,11 @@ const Formulary = () => {
             value={formik.values.ocupationY}
           />
         </div>
-        <div className="text-field">
+        <div className={style.textField}>
           <TextField
           variant="filled"
             margin="normal"
-            className="text-field"
+            className={style.textField}
             label="Altura/Estrato"
             name="ocupationZ"
             onChange={formik.handleChange}
@@ -164,21 +164,21 @@ const Formulary = () => {
         </div>
 </div>
 
-<div className="ocupation">
+<div className={style.ocupation}>
           <h4>Colheita</h4>
-<div className="ocupation-container">
-          <div className="text-field">
+<div className={style.ocupationContainer}>
+          <div className={style.textField}>
             <TextField
             variant="filled"
               margin="normal"
               label="Tempo de Colheita"
               name="timeHarvest"
-              className="text-field"
+              className={style.textField}
               onChange={formik.handleChange}
               value={formik.values.timeHarvest}
             />
           </div>
-          <div className="text-field">
+          <div className={style.textField}>
             <TextField
             variant="filled"
               margin="normal"
@@ -188,11 +188,11 @@ const Formulary = () => {
               value={formik.values.seedsperWeight}
             />
           </div>
-          <div className="text-field">
+          <div className={style.textField}>
             <TextField
             variant="filled"
               margin="normal"
-              label="Quantidade de Plantas por Hectare"
+              label="Plantas por Hectare"
               name="plantsperHectare"
               onChange={formik.handleChange}
               value={formik.values.plantsperHectare}
@@ -200,7 +200,7 @@ const Formulary = () => {
           </div>
           </div>
           </div>
-        <div className="button">
+        <div className={style.button}>
           <Button  type="submit" variant="outlined" color="primary" size="large" >
             Visualizar Prévia
           </Button>
